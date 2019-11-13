@@ -19,7 +19,8 @@ class Lexer(object):
         state_xo = lambda string : state_xor(string[1:]) if (string[0]=='r') else 'error'
         state_xor = lambda string : 'error' if (bool(string)) else 5
         state_i = lambda string : state_if(string[1:]) if (string[0]=='f') else 'error'
-        state_if = lambda string : (lambda string : state_iff(string[1:]) if (string[0]=='f') else 'error') if (bool(string)) else 6
+        state_if = lambda string : cek_iff(string) if (bool(string)) else 6
+        cek_iff = lambda string : state_iff(string[1:]) if (string[0]=='f') else 'error'
         state_iff = lambda string : 'error' if (bool(string)) else 8
         state_t = lambda string : state_th(string[1:]) if (string[0]=='h') else 'error'
         state_th = lambda string : state_the(string[1:]) if (string[0]=='e') else 'error'
