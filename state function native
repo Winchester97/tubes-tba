@@ -42,6 +42,11 @@
         def state_i(string):
             if(string[0] == 'f'): return state_if(string[1:])
             else: return 'error'
+        def state_if(string):
+            if bool(string):
+                if(string[0] == 'f'): return state_iff(string[1:])
+                else: return 'error'
+            else: return 6
         def state_iff(string):
             if bool(string): return 'error'
             else: return 8
