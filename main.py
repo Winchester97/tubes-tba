@@ -7,7 +7,7 @@ def main():
 
     tokens = lexer.Lexer(string.lower()).tokenisasi()
 
-    print('Output : ' + ' '.join([str(token) for token in tokens]))
+    print('Output : {0}'.format(' '.join([str(token) for token in tokens])))
 
 
 main()
