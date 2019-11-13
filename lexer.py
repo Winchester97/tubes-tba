@@ -110,7 +110,8 @@ class Lexer(object):
                     if (input_token(char) is False): break
                 else:
                     self.word += char
-                if (i+1 == len(sc) and (char!='(' and char!=')')):
+                if (i+1 == len(sc)) and (char!='(' and char!=')'):
+                    string = self.word
                     if (input_token(string) is False): break
             else:
                 if (input_token(string) is False): break
