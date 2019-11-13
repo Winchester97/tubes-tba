@@ -29,14 +29,14 @@ class Lexer(object):
         def state_and(string):
             if bool(string): return 'error'
             else: return 3
-            
+
         def state_o(string):
             if(string[0] == 'r'): return state_or(string[1:])
             else: return 'error'
         def state_or(string):
             if bool(string): return 'error'
             else: return 4
-            
+
         def state_x(string):
             if(string[0] == 'o'): return state_xo(string[1:])
             else: return 'error'
@@ -58,7 +58,7 @@ class Lexer(object):
         def state_iff(string):
             if bool(string): return 'error'
             else: return 8
-            
+
         def state_t(string):
             if(string[0] == 'h'): return state_th(string[1:])
             else: return 'error'
@@ -89,6 +89,7 @@ class Lexer(object):
             elif (char == 't'): return state_t(string[1:])
             elif (char == '('): return state_bukakurung()
             elif (char == ')'): return state_tutupkurung()
+            else: return 'error'
 
         tokens = []
 
