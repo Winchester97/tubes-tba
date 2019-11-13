@@ -90,7 +90,6 @@ class Lexer(object):
             elif (char == '('): return state_bukakurung()
             elif (char == ')'): return state_tutupkurung()
 
-        sc = self.string
         tokens = []
 
         def input_token(string):
@@ -99,7 +98,7 @@ class Lexer(object):
             if token == 'error': return False
             self.word = ''
 
-        for i, char in enumerate(sc):
+        for i, char in enumerate(self.string):
             string = self.word
             if char != ' ':
                 if (char == '('):
@@ -110,7 +109,7 @@ class Lexer(object):
                     if (input_token(char) is False): break
                 else:
                     self.word += char
-                if (i+1 == len(sc)) and (char!='(' and char!=')'):
+                if (i+1 == len(self.string)) and (char!='(' and char!=')'):
                     string = self.word
                     if (input_token(string) is False): break
             else:
