@@ -72,9 +72,9 @@ class Lexer(object):
             if bool(string): return 'error'
             else: return 7
 
-        def state_bukakurung(kurung):
+        def state_bukakurung():
             return 9
-        def state_tutupkurung(kurung):
+        def state_tutupkurung():
             return 10
 
         def state_initial(string):
@@ -87,8 +87,8 @@ class Lexer(object):
             elif (char == 'x'): return state_x(string[1:])
             elif (char == 'i'): return state_i(string[1:])
             elif (char == 't'): return state_t(string[1:])
-            elif (char == '('): return state_bukakurung(char)
-            elif (char == ')'): return state_tutupkurung(char)
+            elif (char == '('): return state_bukakurung()
+            elif (char == ')'): return state_tutupkurung()
 
         sc = self.string
         tokens = []
