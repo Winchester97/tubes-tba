@@ -6,76 +6,38 @@ class Lexer(object):
 
     def tokenisasi(self):
 
-        def state_pqrs(string):
-            if bool(string): return 'error'
-            else: return 1
+        state_pqrs = lambda string : 'error' if (bool(string)) else 1
 
-        def state_n(string):
-            if(string[0] == 'o'): return state_no(string[1:])
-            else: return 'error'
-        def state_no(string):
-            if(string[0] == 't'): return state_not(string[1:])
-            else: return 'error'
-        def state_not(string):
-            if bool(string): return 'error'
-            else: return 2
+        state_n = lambda string : state_no(string[1:]) if (string[0]=='o') else 'error'
+        state_no = lambda string : state_not(string[1:]) if (string[0]=='t') else 'error'
+        state_not = lambda string : 'error' if (bool(string)) else 2
 
-        def state_a(string):
-            if(string[0] == 'n'): return state_an(string[1:])
-            else: return 'error'
-        def state_an(string):
-            if(string[0] == 'd'): return state_and(string[1:])
-            else: return 'error'
-        def state_and(string):
-            if bool(string): return 'error'
-            else: return 3
+        state_a = lambda string : state_an(string[1:]) if (string[0]=='n') else 'error'
+        state_an = lambda string : state_and(string[1:]) if (string[0]=='d') else 'error'
+        state_and = lambda string : 'error' if (bool(string)) else 3
 
-        def state_o(string):
-            if(string[0] == 'r'): return state_or(string[1:])
-            else: return 'error'
-        def state_or(string):
-            if bool(string): return 'error'
-            else: return 4
+        state_o = lambda string : state_or(string[1:]) if (string[0]=='r') else 'error'
+        state_or = lambda string : 'error' if (bool(string)) else 4
 
-        def state_x(string):
-            if(string[0] == 'o'): return state_xo(string[1:])
-            else: return 'error'
-        def state_xo(string):
-            if(string[0] == 'r'): return state_xor(string[1:])
-            else: return 'error'
-        def state_xor(string):
-            if bool(string): return 'error'
-            else: return 5
+        state_x = lambda string : state_xo(string[1:]) if (string[0]=='o') else 'error'
+        state_xo = lambda string : state_xor(string[1:]) if (string[0]=='r') else 'error'
+        state_xor = lambda string : 'error' if (bool(string)) else 5
 
-        def state_i(string):
-            if(string[0] == 'f'): return state_if(string[1:])
-            else: return 'error'
+        state_i = lambda string : state_if(string[1:]) if (string[0]=='f') else 'error'
         def state_if(string):
             if bool(string):
                 if(string[0] == 'f'): return state_iff(string[1:])
                 else: return 'error'
             else: return 6
-        def state_iff(string):
-            if bool(string): return 'error'
-            else: return 8
+        state_iff = lambda string : 'error' if (bool(string)) else 8
 
-        def state_t(string):
-            if(string[0] == 'h'): return state_th(string[1:])
-            else: return 'error'
-        def state_th(string):
-            if(string[0] == 'e'): return state_the(string[1:])
-            else: return 'error'
-        def state_the(string):
-            if(string[0] == 'n'): return state_then(string[1:])
-            else: return 'error'
-        def state_then(string):
-            if bool(string): return 'error'
-            else: return 7
+        state_t = lambda string : state_th(string[1:]) if (string[0]=='h') else 'error'
+        state_th = lambda string : state_the(string[1:]) if (string[0]=='e') else 'error'
+        state_the = lambda string : state_then(string[1:]) if (string[0]=='n') else 'error'
+        state_then = lambda string : 'error' if (bool(string)) else 7
 
-        def state_bukakurung():
-            return 9
-        def state_tutupkurung():
-            return 10
+        state_bukakurung = lambda : 9
+        state_tutupkurung = lambda : 10
 
         def state_initial(string):
             proposisi = ['p','q','r','s']
