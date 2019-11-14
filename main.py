@@ -1,11 +1,11 @@
-import lexer
+from lexer import Lexer
 
 
 def main():
-    # string = '(p and q ifg(r or s)'
+
     string = input('Input : ')
 
-    tokens = lexer.Lexer(string.lower()).tokenisasi()
+    tokens = Lexer(string.lower()).tokenisasi()
 
     print('Output : {0}'.format(' '.join([str(token) for token in tokens])))
 
