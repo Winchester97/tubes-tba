@@ -1,13 +1,10 @@
-from lexer import Lexer
+from lexer import tokenisasi
 
 
 def main():
 
     string = input('Input : ')
-
-    tokens = Lexer(string.lower()).tokenisasi()
-
+    tokens = tokenisasi(string.lower().strip())
     print('Output : {0}'.format(' '.join([str(token) for token in tokens])))
-
 
 main()
