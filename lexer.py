@@ -61,7 +61,7 @@ def tokenisasi(string):
         else:
             if (input_token(word) is False): break
 
-    if bool(word) :
+    if bool(word) and tokens[-1] != 'error':
         input_token(word)
 
     return tokens
