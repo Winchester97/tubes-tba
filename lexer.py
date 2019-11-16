@@ -65,7 +65,7 @@ def tokenisasi(string):
     try:
         if tokens[-1] != 'error':
             input_token(word)
-    except:
+    except IndexError:
         input_token(word)
 
     return tokens
