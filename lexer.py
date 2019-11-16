@@ -42,11 +42,12 @@ def tokenisasi(string):
     word = ''
 
     def input_token(w):
-        token = state_initial(w)
-        tokens.append(token)
-        if token == 'error': return False
-        nonlocal word
-        word = ''
+        if bool(w):
+            token = state_initial(w)
+            tokens.append(token)
+            if token == 'error': return False
+            nonlocal word
+            word = ''
 
     for i, char in enumerate(string):
         if char != ' ':
@@ -61,7 +62,10 @@ def tokenisasi(string):
         else:
             if (input_token(word) is False): break
 
-    if bool(word) and tokens[-1] != 'error':
+    try:
+        if tokens[-1] != 'error':
+            input_token(word)
+    except:
         input_token(word)
 
     return tokens
