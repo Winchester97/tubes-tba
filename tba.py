@@ -69,3 +69,29 @@ def tokenisasi(string):
         input_token(word)
 
     return tokens
+
+
+def validasi(tokens):
+    valid = True
+    stack = []
+    stack.append('#')
+    stack.append('S')
+    S = {9 : ['S', 10], 1 : ['X'], 2 : ['S'], 6 : ['S', 7, 'S']}
+
+    while stack[-1] != '#':
+        baca = stack.pop()
+        tokenIsEmpty = not bool(tokens)
+        token = tokens.pop(0)
+        if token == 'error':
+            valid = False
+            break
+        elif baca == 'S':
+            if token == 1 or token == 2 or token == 6 or token == 9:
+                for s in S[token]:
+                        stack.append(s)
+            else:
+                valid = False
+                break
+        elif baca == 'X':
+            if token ==
+
