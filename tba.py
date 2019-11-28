@@ -73,25 +73,33 @@ def tokenisasi(string):
 
 def validasi(tokens):
     valid = True
+    Empty = lambda x : False if bool(x) else True
     stack = []
+    X = [3,4,5,8]
+    S = {9 : ['S', 10], 1 : ['X'], 2 : ['S'], 6 : ['S', 7, 'S']}
     stack.append('#')
     stack.append('S')
-    S = {9 : ['S', 10], 1 : ['X'], 2 : ['S'], 6 : ['S', 7, 'S']}
-
-    while stack[-1] != '#':
-        baca = stack.pop()
-        tokenIsEmpty = not bool(tokens)
+    baca = stack.pop()
+    while baca != '#' and not Empty(tokens):
         token = tokens.pop(0)
         if token == 'error':
             valid = False
             break
         elif baca == 'S':
-            if token == 1 or token == 2 or token == 6 or token == 9:
-                for s in S[token]:
-                        stack.append(s)
+            if token in S.keys():
+                for val in S[token]:
+                        stack.append(val)
             else:
                 valid = False
                 break
         elif baca == 'X':
-            if token ==
+            if token in X:
+                stack.append('X')
+        baca = stack.pop()
+    if valid and baca == '#':
+        print('Valid')
+    else:
+        print('Tidak valid')
+
+
 
