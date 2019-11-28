@@ -53,21 +53,27 @@ def tokenisasi(string):
         if bool(w):
             token = state_initial(w)
             tokens.append(token)
-            if token == 'error': return False
+            if token == 'error':
+                return False
             nonlocal word
             word = ''
     for i, char in enumerate(string):
         if char != ' ':
-            if (char == '('):
-                if (bool(word) and (input_token(word) is False)): break
-                if (input_token(char) is False): break
+            if char == '(':
+                if bool(word) and (input_token(word) is False):
+                    break
+                if input_token(char) is False:
+                    break
             elif char == ')':
-                if (bool(word) and (input_token(word) is False)): break
-                if (input_token(char) is False): break
+                if bool(word) and (input_token(word) is False):
+                    break
+                if input_token(char) is False:
+                    break
             else:
                 word += char
         else:
-            if (input_token(word) is False): break
+            if input_token(word) is False:
+                break
     try:
         if tokens[-1] != 'error':
             input_token(word)
