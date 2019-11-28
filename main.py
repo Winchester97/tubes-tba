@@ -6,6 +6,9 @@ def main():
         string = input('\nInput : ').lower().strip()
         tokens = tokenisasi(string)
         print('Output (Token Lexic) : {0}'.format(' '.join([str(token) for token in tokens])))
-        validasi(tokens)
+        if validasi(tokens):
+            print('Valid')
+        else:
+            print('Tidak valid')
 main()
 
