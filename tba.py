@@ -70,36 +70,51 @@ def tokenisasi(string):
 
     return tokens
 
+    # S -> 9S10 | 1X | 2S | 6S7S
+    # X -> 3S | 2S | 5S | 8S | lambda
 
 def validasi(tokens):
     valid = True
-    Empty = lambda x : False if bool(x) else True
     stack = []
-    X = [3,4,5,8]
-    S = {9 : ['S', 10], 1 : ['X'], 2 : ['S'], 6 : ['S', 7, 'S']}
+    X = [3, 4, 5, 8]
+    S = {9: [10, 'S'], 1: ['X'], 2: ['S'], 6: ['S', 7, 'S']}
     stack.append('#')
     stack.append('S')
-    baca = stack.pop()
-    while baca != '#' and not Empty(tokens):
-        token = tokens.pop(0)
-        if token == 'error':
+    i = 0
+    while stack[-1] != '#':
+        if (i < len(tokens)) and (tokens[i] == 'error'):
             valid = False
             break
-        elif baca == 'S':
-            if token in S.keys():
-                for val in S[token]:
-                        stack.append(val)
+        elif stack[-1] == 'S':
+            stack.pop()
+            if (tokens[i] in S.keys()) and (i < len(tokens)):
+                for simbol in S[tokens[i]]:
+                    stack.append(simbol)
+                i += 1
             else:
                 valid = False
                 break
-        elif baca == 'X':
-            if token in X:
-                stack.append('X')
-        baca = stack.pop()
-    if valid and baca == '#':
+        elif stack[-1] == 'X':
+            stack.pop()
+            if i < len(tokens):
+                if tokens[i] in X:
+                    stack.append('S')
+                    i += 1
+        elif (i < len(tokens)) and (stack[-1] == tokens[i] == 7):
+            stack.pop()
+            i += 1
+        elif (i < len(tokens)) and (stack[-1] == tokens[i] == 10):
+            stack.pop()
+            i += 1
+        else:
+            valid = False
+            break
+
+    if stack[-1] == '#':
+        stack.pop()
+
+    if not bool(stack) and valid:
         print('Valid')
     else:
         print('Tidak valid')
-
-
 
